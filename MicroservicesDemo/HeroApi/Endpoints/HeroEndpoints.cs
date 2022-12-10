@@ -1,7 +1,7 @@
 ﻿using DomainCommons.DTOs;
 using HeroApi.DataAccess.Repositories;
 
-namespace HeroApi.Helpers;
+namespace HeroApi.Endpoints;
 
 public static class HeroEndpoints
 {

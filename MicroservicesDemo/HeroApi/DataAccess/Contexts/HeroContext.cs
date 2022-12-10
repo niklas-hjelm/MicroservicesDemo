@@ -1,5 +1,7 @@
-﻿using DomainCommons.Models;
+﻿using HeroApi.DataAccess.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace HeroApi.DataAccess.Contexts;
 
@@ -9,6 +11,17 @@ public class HeroContext : DbContext
 
     public HeroContext(DbContextOptions options) : base(options)
     {
-
+        try
+        {
+            if (Database.GetService<IDatabaseCreator>() is RelationalDatabaseCreator databaseCreator)
+            {
+                if (!databaseCreator.CanConnect()) databaseCreator.Create();
+                if(!databaseCreator.HasTables()) databaseCreator.CreateTables();
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
     }
 }

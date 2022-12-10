@@ -1,4 +1,4 @@
-﻿namespace DomainCommons.Models
+﻿namespace HeroApi.DataAccess.Models
 {
     public class Hero
     {

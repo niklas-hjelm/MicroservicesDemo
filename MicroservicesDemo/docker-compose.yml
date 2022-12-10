@@ -5,9 +5,15 @@ networks:
 services:
   herodb:
     container_name: hero-db
-    image: mcr.microsoft.com/mssql/server:2019-latest
+    image: "mcr.microsoft.com/mssql/server:2019-latest"
+    ports:
+        - 8001:1433
     environment:
       - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=Pwd123!!1
+      - MSSQL_PID=Developer
+    networks:
+      - backend
   heroapi:
     image: ${DOCKER_REGISTRY-}heroapi
     build:
@@ -15,6 +21,11 @@ services:
       dockerfile: HeroApi/Dockerfile
     networks:
         - backend
+    ports:
+        - 8002:80
+    depends_on:
+        - herodb
     environment:
-        - DB_HOST=localhost
-        - DB_NAME=herodb
+        - DB_HOST=herodb
+        - DB_NAME=HeroDb
+        - DB_MSSQL_SA_PASSWORD=Pwd123!!1

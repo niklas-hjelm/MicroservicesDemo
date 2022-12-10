@@ -1,6 +1,6 @@
 ﻿using DomainCommons.DTOs;
-using DomainCommons.Models;
 using DomainCommons.ResponseTypes;
+using HeroApi.DataAccess.Models;
 
 namespace HeroApi.DataAccess.Repositories;
 

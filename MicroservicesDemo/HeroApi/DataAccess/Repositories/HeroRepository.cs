@@ -1,8 +1,8 @@
 ﻿using System.Text.RegularExpressions;
 using DomainCommons.DTOs;
-using DomainCommons.Models;
 using DomainCommons.ResponseTypes;
 using HeroApi.DataAccess.Contexts;
+using HeroApi.DataAccess.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace HeroApi.DataAccess.Repositories;
@@ -33,6 +33,7 @@ public class HeroRepository : IHeroRepository, IDisposable
             Description = hero.Description
         });
 
+        await _heroContext.SaveChangesAsync();
         return new ServiceResponse<bool>
         {
             Data = true,
@@ -47,7 +48,7 @@ public class HeroRepository : IHeroRepository, IDisposable
             ? new ServiceResponse<Hero?>()
             {
                 Data = hero,
-                Message = "Here yu go"
+                Message = "Here you go"
             }
             : new ServiceResponse<Hero?>()
             {
