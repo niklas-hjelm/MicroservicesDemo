@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Storage;
 
 namespace HeroApi.DataAccess.Contexts;
 
-public class HeroContext : DbContext
+public sealed class HeroContext : DbContext
 {
     public DbSet<Hero> Heroes { get; set; }
 
