@@ -24,7 +24,7 @@ public static class HeroEndpoints
     private static async Task<IResult> DeleteHero(IHeroRepository repo, int id)
     {
         var response = await repo.DeleteHero(id);
-        return response.Data
+        return response.Success
             ? Results.Ok(response.Message)
             : Results.NotFound(response.Message);
     }
@@ -33,7 +33,7 @@ public static class HeroEndpoints
     {
         var response = await repo.AddHero(hero);
 
-        return response.Data
+        return response.Success
             ? Results.Ok(response.Message)
             : Results.NotFound(response.Message);
     }
@@ -41,7 +41,7 @@ public static class HeroEndpoints
     private static async Task<IResult> GetHero(IHeroRepository repo, int id)
     {
         var response = await repo.GetHeroById(id);
-        return response.Data is not null 
+        return response.Success
             ? Results.Ok(response.Data)
             : Results.NotFound(response.Message);
     }
@@ -56,7 +56,7 @@ public static class HeroEndpoints
     private static async Task<IResult> PutHero(IHeroRepository repo, HeroDto hero, int id)
     {
         var response = await repo.UpdateHero(hero, id);
-        return response.Data 
+        return response.Success
             ? Results.Ok(response.Message) 
             : Results.NotFound(response.Message);
     }

@@ -22,7 +22,7 @@ public class HeroRepository : IHeroRepository, IDisposable
         {
             return new ServiceResponse<bool>
             {
-                Data = false,
+                Success = false,
                 Message = "Name can´t be empty"
             };
         }
@@ -36,6 +36,7 @@ public class HeroRepository : IHeroRepository, IDisposable
         await _heroContext.SaveChangesAsync();
         return new ServiceResponse<bool>
         {
+            Success = true,
             Data = true,
             Message = $"Hero: {hero} created"
         };
@@ -47,12 +48,13 @@ public class HeroRepository : IHeroRepository, IDisposable
         return hero is not null
             ? new ServiceResponse<Hero?>()
             {
+                Success = true,
                 Data = hero,
-                Message = "Here you go"
+                Message = "Here you go!"
             }
             : new ServiceResponse<Hero?>()
             {
-                Data = null,
+                Success = false,
                 Message = $"No hero with the id:{id} was found in the database."
             };
     }
@@ -61,6 +63,7 @@ public class HeroRepository : IHeroRepository, IDisposable
     {
         return new ServiceResponse<IEnumerable<Hero>>()
         {
+            Success = true,
             Data = _heroContext.Heroes.ToList(),
             Message = "Here you go!"
         };
@@ -73,9 +76,10 @@ public class HeroRepository : IHeroRepository, IDisposable
         {
             existingHero.Name = hero.Name;
             existingHero.Description = hero.Description;
-            await _heroContext.SaveChangesAsync(); 
+            await _heroContext.SaveChangesAsync();
             return new ServiceResponse<bool>()
             {
+                Success = true,
                 Data = true,
                 Message = $"Hero with id:{id} was updated."
             };
@@ -83,7 +87,7 @@ public class HeroRepository : IHeroRepository, IDisposable
 
         return new ServiceResponse<bool>()
         {
-            Data = false,
+            Success = false,
             Message = $"No Hero with id: {id} was found to update."
         };
     }
@@ -97,6 +101,7 @@ public class HeroRepository : IHeroRepository, IDisposable
             await _heroContext.SaveChangesAsync();
             return new ServiceResponse<bool>()
             {
+                Success = true,
                 Data = true,
                 Message = $"Hero with id:{id} was successfully deleted."
             };
@@ -104,7 +109,7 @@ public class HeroRepository : IHeroRepository, IDisposable
 
         return new ServiceResponse<bool>()
         {
-            Data = false,
+            Success = true,
             Message = $"No Hero with id: {id} was found to delete."
         };
     }
