@@ -16,17 +16,8 @@ public class HeroRepository : IHeroRepository, IDisposable
         _heroContext = heroContext;
     }
 
-    public async Task<ServiceResponse<bool>> AddHero(HeroDto hero)
+    public async Task<HeroDto?> AddHero(HeroDto hero)
     {
-        if (!Regex.IsMatch(hero.Name, "\\w+", RegexOptions.NonBacktracking))
-        {
-            return new ServiceResponse<bool>
-            {
-                Success = false,
-                Message = "Name can´t be empty"
-            };
-        }
-
         await _heroContext.AddAsync(new Hero()
         {
             Name = hero.Name,
@@ -34,42 +25,25 @@ public class HeroRepository : IHeroRepository, IDisposable
         });
 
         await _heroContext.SaveChangesAsync();
-        return new ServiceResponse<bool>
-        {
-            Success = true,
-            Data = true,
-            Message = $"Hero: {hero} created"
-        };
+        return hero;
     }
 
-    public async Task<ServiceResponse<Hero?>> GetHeroById(int id)
+    public async Task<HeroDto?> GetHeroById(int id)
     {
         var hero = await _heroContext.Heroes.FirstOrDefaultAsync(h => h.Id == id);
         return hero is not null
-            ? new ServiceResponse<Hero?>()
-            {
-                Success = true,
-                Data = hero,
-                Message = "Here you go!"
-            }
-            : new ServiceResponse<Hero?>()
-            {
-                Success = false,
-                Message = $"No hero with the id:{id} was found in the database."
-            };
+            ? new HeroDto(hero.Name, hero.Description)
+            : null;
     }
 
-    public async Task<ServiceResponse<IEnumerable<Hero>>> GetAllHeroes()
+    public async Task<IEnumerable<HeroDto>> GetAllHeroes()
     {
-        return new ServiceResponse<IEnumerable<Hero>>()
-        {
-            Success = true,
-            Data = _heroContext.Heroes.ToList(),
-            Message = "Here you go!"
-        };
+        return _heroContext.Heroes
+            .Select(h=> new HeroDto(h.Name,h.Description))
+            .ToList();
     }
 
-    public async Task<ServiceResponse<bool>> UpdateHero(HeroDto hero, int id)
+    public async Task<HeroDto?> UpdateHero(HeroDto hero, int id)
     {
         var existingHero = await _heroContext.Heroes.FirstOrDefaultAsync(h => h.Id == id);
         if (existingHero is not null)
@@ -77,41 +51,23 @@ public class HeroRepository : IHeroRepository, IDisposable
             existingHero.Name = hero.Name;
             existingHero.Description = hero.Description;
             await _heroContext.SaveChangesAsync();
-            return new ServiceResponse<bool>()
-            {
-                Success = true,
-                Data = true,
-                Message = $"Hero with id:{id} was updated."
-            };
+            return hero;
         }
 
-        return new ServiceResponse<bool>()
-        {
-            Success = false,
-            Message = $"No Hero with id: {id} was found to update."
-        };
+        return null;
     }
 
-    public async Task<ServiceResponse<bool>> DeleteHero(int id)
+    public async Task<HeroDto?> DeleteHero(int id)
     {
         var existingHero = await _heroContext.Heroes.FirstOrDefaultAsync(h => h.Id == id);
         if (existingHero is not null)
         {
             _heroContext.Heroes.Remove(existingHero);
             await _heroContext.SaveChangesAsync();
-            return new ServiceResponse<bool>()
-            {
-                Success = true,
-                Data = true,
-                Message = $"Hero with id:{id} was successfully deleted."
-            };
+            return new HeroDto(existingHero.Name, existingHero.Description);
         }
 
-        return new ServiceResponse<bool>()
-        {
-            Success = true,
-            Message = $"No Hero with id: {id} was found to delete."
-        };
+        return null;
     }
 
     public void Dispose()

@@ -1,6 +1,7 @@
 using HeroApi.DataAccess.Contexts;
 using HeroApi.DataAccess.Repositories;
 using HeroApi.Endpoints;
+using HeroApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,7 @@ var connectionString = $"Data Source={host};Initial Catalog={database};User ID=s
 
 builder.Services.AddSqlServer<HeroContext>(connectionString);
 builder.Services.AddTransient<IHeroRepository, HeroRepository>();
+builder.Services.AddTransient<IHeroResponseService, HeroResponseService>();
 
 var app = builder.Build();
 

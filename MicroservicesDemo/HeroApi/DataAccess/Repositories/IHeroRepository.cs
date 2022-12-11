@@ -6,9 +6,9 @@ namespace HeroApi.DataAccess.Repositories;
 
 public interface IHeroRepository
 {
-    Task<ServiceResponse<bool>> AddHero(HeroDto hero);
-    Task<ServiceResponse<Hero?>> GetHeroById(int id);
-    Task<ServiceResponse<IEnumerable<Hero>>> GetAllHeroes();
-    Task<ServiceResponse<bool>> UpdateHero(HeroDto hero, int id);
-    Task<ServiceResponse<bool>> DeleteHero(int id);
+    Task<HeroDto?> AddHero(HeroDto hero);
+    Task<HeroDto?> GetHeroById(int id);
+    Task<IEnumerable<HeroDto>> GetAllHeroes();
+    Task<HeroDto?> UpdateHero(HeroDto hero, int id);
+    Task<HeroDto?> DeleteHero(int id);
 }

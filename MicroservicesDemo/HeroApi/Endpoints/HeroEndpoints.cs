@@ -1,5 +1,6 @@
 ﻿using DomainCommons.DTOs;
 using HeroApi.DataAccess.Repositories;
+using HeroApi.Services;
 
 namespace HeroApi.Endpoints;
 
@@ -21,43 +22,43 @@ public static class HeroEndpoints
         app.MapDelete("/heroes/{id:int}", DeleteHero);
     }
 
-    private static async Task<IResult> DeleteHero(IHeroRepository repo, int id)
+    private static async Task<IResult> DeleteHero(IHeroResponseService heroService, int id)
     {
-        var response = await repo.DeleteHero(id);
+        var response = await heroService.DeleteHeroWithId(id);
         return response.Success
-            ? Results.Ok(response.Message)
-            : Results.NotFound(response.Message);
+            ? Results.Ok(response)
+            : Results.NotFound(response);
     }
 
-    private static async Task<IResult> PostHero(IHeroRepository repo, HeroDto hero)
+    private static async Task<IResult> PostHero(IHeroResponseService heroService, HeroDto hero)
     {
-        var response = await repo.AddHero(hero);
+        var response = await heroService.AddHero(hero);
 
         return response.Success
-            ? Results.Ok(response.Message)
-            : Results.NotFound(response.Message);
+            ? Results.Ok(response)
+            : Results.NotFound(response);
     }
 
-    private static async Task<IResult> GetHero(IHeroRepository repo, int id)
+    private static async Task<IResult> GetHero(IHeroResponseService heroService, int id)
     {
-        var response = await repo.GetHeroById(id);
+        var response = await heroService.GetHeroWithId(id);
         return response.Success
-            ? Results.Ok(response.Data)
-            : Results.NotFound(response.Message);
+            ? Results.Ok(response)
+            : Results.NotFound(response);
     }
 
-    private static async Task<IResult> GetAllHeroes(IHeroRepository repo)
+    private static async Task<IResult> GetAllHeroes(IHeroResponseService heroService)
     {
-        var response = await repo.GetAllHeroes();
-        return Results.Ok(response.Data);
+        var response = await heroService.GetAllHeroes();
+        return Results.Ok(response);
     }
 
 
-    private static async Task<IResult> PutHero(IHeroRepository repo, HeroDto hero, int id)
+    private static async Task<IResult> PutHero(IHeroResponseService heroService, HeroDto hero, int id)
     {
-        var response = await repo.UpdateHero(hero, id);
+        var response = await heroService.UpdateHeroWithId(hero, id);
         return response.Success
-            ? Results.Ok(response.Message) 
-            : Results.NotFound(response.Message);
+            ? Results.Ok(response) 
+            : Results.NotFound(response);
     }
 }
