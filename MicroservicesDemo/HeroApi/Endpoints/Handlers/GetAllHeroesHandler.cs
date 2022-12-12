@@ -1,10 +1,10 @@
-﻿using HeroApi.Requests;
+﻿using HeroApi.Endpoints.Requests;
 using HeroApi.Services;
 using MediatR;
 
-namespace HeroApi.Handlers;
+namespace HeroApi.Endpoints.Handlers;
 
-public class GetAllHeroesHandler:IRequestHandler<GetAllHeroesRequest, IResult>
+public class GetAllHeroesHandler : IRequestHandler<GetAllHeroesRequest, IResult>
 {
     private readonly IHeroResponseService _heroResponseService;
 

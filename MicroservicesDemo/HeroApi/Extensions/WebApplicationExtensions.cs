@@ -1,4 +1,4 @@
-﻿using HeroApi.Requests;
+﻿using HeroApi.Endpoints.Requests;
 using MediatR;
 
 namespace HeroApi.Extensions;

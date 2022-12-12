@@ -1,8 +1,8 @@
-﻿using HeroApi.Requests;
+﻿using HeroApi.Endpoints.Requests;
 using HeroApi.Services;
 using MediatR;
 
-namespace HeroApi.Handlers;
+namespace HeroApi.Endpoints.Handlers;
 
 public class PutHeroHandler : IRequestHandler<PutHeroRequest, IResult>
 {

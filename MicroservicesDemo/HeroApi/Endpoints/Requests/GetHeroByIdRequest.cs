@@ -1,4 +1,4 @@
-﻿namespace HeroApi.Requests;
+﻿namespace HeroApi.Endpoints.Requests;
 
 public class GetHeroByIdRequest : IHttpRequest
 {

@@ -1,5 +1,5 @@
-﻿using HeroApi.Extensions;
-using HeroApi.Requests;
+﻿using HeroApi.Endpoints.Requests;
+using HeroApi.Extensions;
 
 namespace HeroApi.Endpoints;
 

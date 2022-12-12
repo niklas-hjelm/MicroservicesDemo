@@ -1,6 +1,6 @@
 ﻿using DomainCommons.DTOs;
 
-namespace HeroApi.Requests;
+namespace HeroApi.Endpoints.Requests;
 
 public class PutHeroRequest : IHttpRequest
 {
