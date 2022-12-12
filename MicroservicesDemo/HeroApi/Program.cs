@@ -1,6 +1,6 @@
 using HeroApi.DataAccess.Contexts;
 using HeroApi.DataAccess.Repositories;
-using HeroApi.Endpoints;
+using HeroApi.Extensions;
 using HeroApi.Services;
 using MediatR;
 

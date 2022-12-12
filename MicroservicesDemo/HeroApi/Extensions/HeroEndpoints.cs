@@ -1,7 +1,6 @@
 ﻿using HeroApi.Endpoints.Requests;
-using HeroApi.Extensions;
 
-namespace HeroApi.Endpoints;
+namespace HeroApi.Extensions;
 
 public static class HeroEndpoints
 {
