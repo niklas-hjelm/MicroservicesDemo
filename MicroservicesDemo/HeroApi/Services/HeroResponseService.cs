@@ -1,6 +1,5 @@
 ﻿using DomainCommons.DTOs;
 using DomainCommons.ResponseTypes;
-using HeroApi.DataAccess.Models;
 using HeroApi.DataAccess.Repositories;
 using System.Text.RegularExpressions;
 

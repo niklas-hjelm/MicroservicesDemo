@@ -1,8 +1,6 @@
 using DomainCommons.DTOs;
 using DomainCommons.ResponseTypes;
 using FakeItEasy;
-using HeroApi.DataAccess.Models;
-using HeroApi.DataAccess.Repositories;
 using HeroApi.Services;
 
 namespace HeroApi.Tests

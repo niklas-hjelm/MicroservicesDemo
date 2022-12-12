@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomainCommons", "..\DomainC
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{B3E17680-9D4A-4E3B-9DC9-E5DA475D77DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeroApi.Tests", "..\HeroApi.Tests\HeroApi.Tests.csproj", "{95DF6EA1-7AFC-4D97-9EB1-6757561CC919}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeroApi.Tests", "..\HeroApi.Tests\HeroApi.Tests.csproj", "{95DF6EA1-7AFC-4D97-9EB1-6757561CC919}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
