@@ -1,11 +1,6 @@
 using DomainCommons.DTOs;
 using DomainCommons.ResponseTypes;
 using FakeItEasy;
-using HeroApi.Endpoints.Handlers;
-using HeroApi.Endpoints.Requests;
-using HeroApi.Services;
-using Microsoft.AspNetCore.Http.HttpResults;
-
 namespace HeroApi.Tests
 {
     public class HeroEndpointTests
