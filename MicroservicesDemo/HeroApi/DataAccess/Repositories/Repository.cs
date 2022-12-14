@@ -1,22 +1,21 @@
-﻿using System.Text.RegularExpressions;
-using DomainCommons.DTOs;
-using DomainCommons.ResponseTypes;
+﻿using DomainCommons.DTOs;
+using DomainCommons.Services;
 using HeroApi.DataAccess.Contexts;
 using HeroApi.DataAccess.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace HeroApi.DataAccess.Repositories;
 
-public class HeroRepository : IHeroRepository, IDisposable
+public class Repository : IRepository<HeroDto>, IDisposable
 {
     private readonly HeroContext _heroContext;
 
-    public HeroRepository(HeroContext heroContext)
+    public Repository(HeroContext heroContext)
     {
         _heroContext = heroContext;
     }
 
-    public async Task<HeroDto?> AddHero(HeroDto hero)
+    public async Task<HeroDto?> Add(HeroDto hero)
     {
         await _heroContext.AddAsync(new Hero()
         {
@@ -28,24 +27,24 @@ public class HeroRepository : IHeroRepository, IDisposable
         return hero;
     }
 
-    public async Task<HeroDto?> GetHeroById(int id)
+    public async Task<HeroDto?> GetById(object id)
     {
-        var hero = await _heroContext.Heroes.FirstOrDefaultAsync(h => h.Id == id);
+        var hero = await _heroContext.Heroes.FirstOrDefaultAsync(h => h.Id == (int)id);
         return hero is not null
             ? new HeroDto(hero.Name, hero.Description)
             : null;
     }
 
-    public async Task<IEnumerable<HeroDto>> GetAllHeroes()
+    public async Task<IEnumerable<HeroDto>> GetAll()
     {
-        return _heroContext.Heroes
+        return await _heroContext.Heroes
             .Select(h=> new HeroDto(h.Name,h.Description))
-            .ToList();
+            .ToListAsync();
     }
 
-    public async Task<HeroDto?> UpdateHero(HeroDto hero, int id)
+    public async Task<HeroDto?> Update(HeroDto hero, object id)
     {
-        var existingHero = await _heroContext.Heroes.FirstOrDefaultAsync(h => h.Id == id);
+        var existingHero = await _heroContext.Heroes.FirstOrDefaultAsync(h => h.Id == (int)id);
         if (existingHero is not null)
         {
             existingHero.Name = hero.Name;
@@ -57,9 +56,9 @@ public class HeroRepository : IHeroRepository, IDisposable
         return null;
     }
 
-    public async Task<HeroDto?> DeleteHero(int id)
+    public async Task<HeroDto?> Delete(object id)
     {
-        var existingHero = await _heroContext.Heroes.FirstOrDefaultAsync(h => h.Id == id);
+        var existingHero = await _heroContext.Heroes.FirstOrDefaultAsync(h => h.Id == (int)id);
         if (existingHero is not null)
         {
             _heroContext.Heroes.Remove(existingHero);

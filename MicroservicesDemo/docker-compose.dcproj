@@ -3,7 +3,7 @@
   <PropertyGroup Label="Globals">
     <ProjectVersion>2.1</ProjectVersion>
     <DockerTargetOS>Linux</DockerTargetOS>
-    <ProjectGuid>c0382aa1-a56a-4cab-a8e7-61b713fad258</ProjectGuid>
+    <ProjectGuid>26144acc-5895-4f68-9e1d-c656183693df</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}</DockerServiceUrl>
     <DockerServiceName>heroapi</DockerServiceName>
