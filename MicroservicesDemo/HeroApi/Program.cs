@@ -1,3 +1,5 @@
+using DomainCommons.DTOs;
+using DomainCommons.Services;
 using HeroApi.DataAccess.Contexts;
 using HeroApi.DataAccess.Repositories;
 using HeroApi.Extensions;
@@ -15,8 +17,8 @@ builder.Services.AddSqlServer<HeroContext>(connectionString);
 
 builder.Services.AddMediatR(x => x.AsScoped(), typeof(Program));
 
-builder.Services.AddTransient<IHeroRepository, HeroRepository>();
-builder.Services.AddTransient<IHeroResponseService, HeroResponseService>();
+builder.Services.AddTransient<IRepository<HeroDto>, Repository>();
+builder.Services.AddTransient<IResponseService<HeroDto>, HeroResponseService>();
 
 var app = builder.Build();
 

@@ -1,7 +1,8 @@
 version: '3.4'
 
 networks:
-  backend:
+  heroes:
+  villains:
 services:
   herodb:
     container_name: hero-db
@@ -13,14 +14,14 @@ services:
       - MSSQL_SA_PASSWORD=Pwd123!!1
       - MSSQL_PID=Developer
     networks:
-      - backend
+      - heroes
   heroapi:
     image: ${DOCKER_REGISTRY-}heroapi
     build:
       context: .
       dockerfile: HeroApi/Dockerfile
     networks:
-        - backend
+        - heroes
     ports:
         - 8002:80
     depends_on:
@@ -29,3 +30,24 @@ services:
         - DB_HOST=herodb
         - DB_NAME=HeroDb
         - DB_MSSQL_SA_PASSWORD=Pwd123!!1
+  villaindb:
+    container_name: villain-db
+    image: mongo:latest
+    ports:
+        - 8003:27017
+    networks:
+        - villains
+  villainapi:
+    image: ${DOCKER_REGISTRY-}villainapi
+    build:
+      context: .
+      dockerfile: VillianApi/Dockerfile
+    networks:
+      - villains
+    ports:
+      - 8004:80
+    depends_on:
+      - villaindb
+    environment:
+      - DB_HOST=villaindb
+      - DB_NAME=VillainDb

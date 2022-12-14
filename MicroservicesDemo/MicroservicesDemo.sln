@@ -7,13 +7,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Microservices", "Microservi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeroApi", "HeroApi\HeroApi.csproj", "{8EC77F82-F714-473F-AF25-2EAEDC85C5CF}"
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{C0382AA1-A56A-4CAB-A8E7-61B713FAD258}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomainCommons", "..\DomainCommons\DomainCommons.csproj", "{57D95DF8-02C5-4106-82F7-FF276EC126AE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{B3E17680-9D4A-4E3B-9DC9-E5DA475D77DD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeroApi.Tests", "..\HeroApi.Tests\HeroApi.Tests.csproj", "{95DF6EA1-7AFC-4D97-9EB1-6757561CC919}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VillainApi", "VillianApi\VillainApi.csproj", "{1B1F59A8-E3A1-4898-B7B0-C854A82F639F}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{26144ACC-5895-4F68-9E1D-C656183693DF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,10 +27,6 @@ Global
 		{8EC77F82-F714-473F-AF25-2EAEDC85C5CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8EC77F82-F714-473F-AF25-2EAEDC85C5CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8EC77F82-F714-473F-AF25-2EAEDC85C5CF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C0382AA1-A56A-4CAB-A8E7-61B713FAD258}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C0382AA1-A56A-4CAB-A8E7-61B713FAD258}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C0382AA1-A56A-4CAB-A8E7-61B713FAD258}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C0382AA1-A56A-4CAB-A8E7-61B713FAD258}.Release|Any CPU.Build.0 = Release|Any CPU
 		{57D95DF8-02C5-4106-82F7-FF276EC126AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{57D95DF8-02C5-4106-82F7-FF276EC126AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57D95DF8-02C5-4106-82F7-FF276EC126AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -37,6 +35,14 @@ Global
 		{95DF6EA1-7AFC-4D97-9EB1-6757561CC919}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{95DF6EA1-7AFC-4D97-9EB1-6757561CC919}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{95DF6EA1-7AFC-4D97-9EB1-6757561CC919}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B1F59A8-E3A1-4898-B7B0-C854A82F639F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B1F59A8-E3A1-4898-B7B0-C854A82F639F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B1F59A8-E3A1-4898-B7B0-C854A82F639F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B1F59A8-E3A1-4898-B7B0-C854A82F639F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26144ACC-5895-4F68-9E1D-C656183693DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26144ACC-5895-4F68-9E1D-C656183693DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26144ACC-5895-4F68-9E1D-C656183693DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26144ACC-5895-4F68-9E1D-C656183693DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,6 +50,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{8EC77F82-F714-473F-AF25-2EAEDC85C5CF} = {F45948FA-40C8-453D-B70A-D47386F23A2E}
 		{95DF6EA1-7AFC-4D97-9EB1-6757561CC919} = {B3E17680-9D4A-4E3B-9DC9-E5DA475D77DD}
+		{1B1F59A8-E3A1-4898-B7B0-C854A82F639F} = {F45948FA-40C8-453D-B70A-D47386F23A2E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4BAEFA2F-9C76-4962-804A-1B63AA795127}

@@ -1,5 +1,6 @@
 using DomainCommons.DTOs;
 using DomainCommons.ResponseTypes;
+using DomainCommons.Services;
 using FakeItEasy;
 namespace HeroApi.Tests
 {
@@ -24,8 +25,8 @@ namespace HeroApi.Tests
                             a.Message = "Here you go!";
                         })
                     );
-            var responseService = A.Fake<IHeroResponseService>();
-            A.CallTo(() => responseService.GetAllHeroes()).Returns(dummyResponse);
+            var responseService = A.Fake<IResponseService<HeroDto>>();
+            A.CallTo(() => responseService.GetAll()).Returns(dummyResponse);
 
             var handler = new GetAllHeroesHandler(responseService);
 
